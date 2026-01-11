@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.unrey.stability.checks")
 }
 
 android {
@@ -72,10 +73,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
 
-
-//tasks.register<CheckComposeStabilityTask>("checkComposeStability") {
-//    // Common places Compose compiler writes reports (adjust to your project)
-//    reports.from(fileTree(layout.buildDirectory) { include("compose-reports/**/*classes.txt") })
-//    // If you also want to fail when "unstable val ..." is present:
-//    failOnUnstableMembers.set(true)
-//}
+composeStability {
+    enabled.set(true)
+    reportFormat.set("text")
+}

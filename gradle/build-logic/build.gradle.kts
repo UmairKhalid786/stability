@@ -13,3 +13,12 @@ dependencies {
     // Examples (ONLY if your task references Android/AGP or Compose tooling APIs):
     // implementation("com.android.tools.build:gradle:8.5.2")
 }
+
+gradlePlugin {
+    plugins {
+        create("stabilityChecks") {
+            id = "com.unrey.stability.checks"
+            implementationClass = "com.unrey.stability.checks.ComposeStabilityConventionPlugin"
+        }
+    }
+}

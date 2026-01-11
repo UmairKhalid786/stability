@@ -15,15 +15,13 @@ class ComposeStabilityConventionPlugin : Plugin<Project> {
             group = "verification"
             description = "Checks Compose stability (your custom rule)."
 
-            // Example wiring from extension -> task
-            reportFormat.convention(ext.reportFormat)
-
-            // Example input: point to some directory inside the module
-            // Replace with whatever your task needs.
-            inputDir.convention(layout.projectDirectory.dir("compose-reports"))
-
-            // If you have outputs, set them here for caching
-            // outputFile.set(layout.buildDirectory.file("reports/compose/stability.txt"))
+            reports.from(
+                fileTree(layout.buildDirectory) {
+                    include(
+                        "compose-reports/**/*classes*.txt",
+                    )
+                }
+            )
 
             // Optional: only run if enabled
             onlyIf { ext.enabled.get() }

@@ -1,37 +1,25 @@
 package com.unrey.stability.checks
 
-import java.util.Locale
+import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.file.ConfigurableFileCollection
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
-
-import org.gradle.api.DefaultTask
-import org.gradle.api.file.DirectoryProperty
-import org.gradle.api.file.RegularFileProperty
-import org.gradle.api.provider.Property
-import org.gradle.api.tasks.InputDirectory
-import org.gradle.api.tasks.PathSensitive
-import org.gradle.api.tasks.PathSensitivity
+import java.util.Locale
 
 abstract class CheckComposeStabilityTask : DefaultTask() {
     @get:InputFiles
     abstract val reports: ConfigurableFileCollection
 
     @get:Input
-    abstract val reportFormat: Property<String>
-
-    @get:Input
     abstract val failOnUnstableMembers: Property<Boolean>
 
     @get:OutputFile
     abstract val outputReport: RegularFileProperty
-
-    @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
-    abstract val inputDir: DirectoryProperty
 
     init {
         description = "Checks Compose compiler stability reports and fails if unstable classes are found."
