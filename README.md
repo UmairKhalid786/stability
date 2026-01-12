@@ -258,12 +258,6 @@ Good areas to contribute:
 
 ---
 
-## License
-
-MIT (or your preferred license)
-
----
-
 **Compose stability is a performance feature.**
 
 This project helps you treat it like one.
